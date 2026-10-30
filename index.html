@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>JP Strategy</title>
+<meta name="apple-mobile-web-app-title" content="JP Strategy">
+<meta name="application-name" content="JP Strategy">
+<meta name="theme-color" content="#6E101F">
+<meta name="robots" content="noindex">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:#fff;
+    background:radial-gradient(120% 70% at 50% 18%,#C04155 0%,#8F1F33 38%,#3B0711 100%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 24px}
+  .sun{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 45% 40%,#FFFDFB 0%,#FFEDEA 55%,#F9B6BC 100%);
+    box-shadow:0 0 80px 20px rgba(255,214,214,.35);margin-bottom:28px}
+  h1{font-weight:300;font-size:34px;letter-spacing:-.03em}
+  p{margin-top:10px;color:rgba(255,255,255,.75);font-size:15px;line-height:1.5}
+  .btn{display:inline-flex;align-items:center;gap:8px;margin-top:26px;height:52px;padding:0 26px;border-radius:26px;
+    background:#fff;color:#6E101F;font-weight:600;font-size:16px;text-decoration:none}
+  .setup{display:none;max-width:420px;margin-top:28px;text-align:left;background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.25);border-radius:22px;padding:20px 22px}
+  .setup h2{font-size:15px;font-weight:600;margin-bottom:10px}
+  .setup ol{padding-left:20px;font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.9)}
+  .setup li+li{margin-top:4px}
+  .setup .os{margin-top:14px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+  body.setup-mode .setup{display:block}
+  body.setup-mode .opening{display:none}
+</style>
+</head>
+<body>
+  <div class="sun" aria-hidden="true"></div>
+  <h1>JP Strategy</h1>
+  <p class="opening">Opening the app…</p>
+  <div class="setup">
+    <h2>Add JP Strategy to your home screen</h2>
+    <div class="os">iPhone (Safari)</div>
+    <ol><li>Tap the <b>Share</b> button at the bottom of the screen.</li><li>Choose <b>Add to Home Screen</b>, then <b>Add</b>.</li></ol>
+    <div class="os">Android (Chrome)</div>
+    <ol><li>Tap the <b>⋮</b> menu at the top right.</li><li>Choose <b>Add to Home screen</b>, then <b>Add</b>.</li></ol>
+  </div>
+  <a class="btn" id="go" href="#">Open the app →</a>
+<script>
+  // The real app. Everything (data, sign-in, access tiers) stays on Google Apps Script.
+  var APP = 'https://script.google.com/a/macros/crimsoneducation.org/s/AKfycby4So96n-UwNeXcnEqBhq2Cqmv8WIyorUF-Rj6loqwc85rzflH_OxBvWWNDtERcl6vS/exec';
+  document.getElementById('go').href = APP;
+  if (/[?&#]setup\b/.test(location.search + location.hash)) {
+    // Setup link: show instructions, and clean the address so the saved icon opens the app directly.
+    document.body.classList.add('setup-mode');
+    history.replaceState(null, '', location.pathname);
+  } else {
+    location.replace(APP);
+  }
+</script>
+</body>
+</html>
